@@ -23,20 +23,13 @@ export class AppComponent implements OnInit{
   ngOnInit():void{
 
     
-    this.setCoord()
+    
+    this.get_weathers()
     
     
   }
  
-  setCoord(){
-    this.rest.setCoord().subscribe((resp: any) => {
-      this.get_weathers()
 
-      
-      console.log("OK")
-      
-    })
-  }
   get_weathers(){
 
     for(let i in this.cities){

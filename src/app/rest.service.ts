@@ -22,16 +22,11 @@ export class RestService {
   }
 
   getWeather(city: string){
-    if (Math.random() < 0.1) {
-      this.setErrorLog(city)
-      this.getWeather(city)
-      throw new Error('How unfortunate! The API RequestFailed')
-    }
-    else{
+
 
       return this.http.get(`${environment.baseURL}weather/${city}`).pipe(
         catchError(this.handleError));
-    }
+
   }
   setErrorLog(city: string){
   

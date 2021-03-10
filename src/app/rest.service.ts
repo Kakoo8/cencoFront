@@ -9,14 +9,14 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 
 const endpoint = 'http://localhost:8000/api/';
-const subject = webSocket("ws://localhost:8000/ws/weather");
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
+  subject = webSocket("ws://localhost:8000/ws/weather");
 
   setCoord(): Observable<any>{
     

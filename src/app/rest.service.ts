@@ -5,8 +5,11 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import{ Moment} from 'moment'
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+
 
 const endpoint = 'http://localhost:8000/api/';
+const subject = webSocket("ws://localhost:8000/ws/weather");
 @Injectable({
   providedIn: 'root'
 })
@@ -21,23 +24,14 @@ export class RestService {
     
   }
 
-  getWeather(city: string){
+  getWeather(){
 
 
-      return this.http.get(`${environment.baseURL}weather/${city}`).pipe(
+      return this.http.get(`${environment.baseURL}weather/cities`).pipe(
         catchError(this.handleError));
 
   }
-  setErrorLog(city: string){
-  
-    
-    this.http.post(`${environment.baseURL}/error`, {
-      params:{
-        'hora': `Error consulting ${city}`
-        
-      }
-    })
-  }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
@@ -49,4 +43,7 @@ export class RestService {
     return throwError(
       'Something bad happened; please try again later.');
   }
+
+
 }
+

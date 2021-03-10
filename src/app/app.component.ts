@@ -1,46 +1,46 @@
 
 import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { RestService} from './rest.service';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  subject = webSocket("ws://localhost:8000/ws/weather");
   title = 'cencoFront';
-  
+  listen= true
   cities = ['London', 'Santiago', 'Zurich', 'Auckland', 'Sydney', 'Georgia']
   citiesW = [""]
  
   weatherOfCities: any=[];
-  
+  messages: any = [];
    constructor(
     public rest: RestService,
-    private router: Router) { }
+    private router: Router, 
+    ) { }
 
 
   ngOnInit():void{
 
     
+    this.subject.subscribe(messages => this.messages=messages)
     
-    this.get_weathers()
     
     
   }
- 
-
-  get_weathers(){
-
-    for(let i in this.cities){
-
-      this.rest.getWeather(this.cities[i]).subscribe(res => this.weatherOfCities[i]= res)
-      
-      
-    }
+  
+  
+  always():void{
     
+
    
   }
+
+
 
 
 }

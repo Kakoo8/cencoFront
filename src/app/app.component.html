@@ -1,11 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
 
 <style>
   :host {
@@ -103,14 +96,14 @@
    
   <div class="content" role="main" >
 
-    <div  *ngFor="let m of messages ">
+    <div  *ngFor="let m of weathers ">
       <div *ngIf="m">
         <div class="card-container">
 
           <a class="card">
           <h4><b>{{m.name}} </b></h4>
             
-          <p>Temperature: {{m.main.temp}}  Weather: {{m.weather[0].main}}</p>
+          <h3>Temperature: {{m.main.temp}}  Weather: {{m.weather[0].main}}</h3>
           </a>
         </div>
       </div>

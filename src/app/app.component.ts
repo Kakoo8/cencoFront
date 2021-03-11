@@ -12,52 +12,50 @@ import { Observable, throwError } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  subject = webSocket("ws://localhost:8000/ws/weather");
+
+  ws = "ws://localhost:8000/ws/weather"
+  subject = webSocket(this.ws);
   
   title = 'cencoFront';
-  listen= true
+ 
   cities = ['London', 'Santiago', 'Zurich', 'Auckland', 'Sydney', 'Georgia']
   citiesW = [""]
-  source = interval(10000);
+  counter = interval(5000);
  
   weatherOfCities: any=[];
   messages: any = [];
 
 
-  connection$?: WebSocketSubject<any>;
-  RETRY_SECONDS = 10;
-  connect(): Observable<any> {
 
-    this.connection$ = webSocket("ws://localhost:8000/ws/weather");
-    return this.connection$;
-
-
-     }
    constructor(
     public rest: RestService,
     private router: Router, 
-   ) { this.subject.subscribe(messages => this.messages = messages)}
+   ) { }
     
 
+   ngOnInit(){
+
+
+     this.counter.subscribe(n =>      this.consulting());
+
+   }
+
+   consulting(){
+
+     this.subject.subscribe(messages => this.messages = messages)
+     setTimeout(() => this.subject.complete(), 5000);
 
 
 
-  ngOnInit():void{
+   }
+
 
     
-    
 
     
-
-    
-  }
   
   
-  always():void{
-   
-    this.subject.subscribe(messages => this.messages = messages)
- 
-  }
+  
 
  
 

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
  
   cities = ['London', 'Santiago', 'Zurich', 'Auckland', 'Sydney', 'Georgia']
   citiesW = [""]
-  counter = interval(5000);
+  counter = interval(10000);
  
   weatherOfCities: any=[];
   messages: any = [];
